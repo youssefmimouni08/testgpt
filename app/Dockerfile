@@ -5,9 +5,9 @@ WORKDIR /chatgpt
 COPY ./app/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 COPY ./app/ .
-ENV API_KEY="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"
+ENV API_KEY=mysecret
 
-ENV client_secret=agU8Q~1Ae~8NuqgXILZEBlyqmZ6tNoUx0cKPRaj3 
+ENV client_secret=mysecret
 ENV client_id=4efd5306-6b56-440b-9bbd-5b3d9414fa03
 ENV tenant_id=28d1eaf4-0022-4840-8257-173c1bd0de0f 
 ENV redirect_url="https://chatgpt.germanywestcentral.cloudapp.azure.com/getToken"
