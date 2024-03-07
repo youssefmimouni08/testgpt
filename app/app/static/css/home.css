@@ -1,0 +1,70 @@
+#nav{
+    background-color: blue;
+}
+
+#username {
+    color: white;
+    text-align: left;
+    margin-left: 5px;
+    display: inline;
+}
+
+#timer {
+    color: white;
+    text-align: right;
+    margin-left: 20px;
+    display: inline;
+}
+
+#chat-space{
+    background-color: white;
+    color: black;
+}
+
+#input-space{
+    background-color: white;
+    color: black;
+    margin-top: 100px;
+}
+
+.chat-number{
+    width: 100px;
+}
+
+.chat-content{
+    width: 1000px;
+}
+
+.user{
+    background-color: aliceblue;
+    color: black;
+}
+
+.assistant{
+    background-color: lightpink;
+    color: black;
+}
+
+tr, th{
+    max-width: 1200px;
+}
+
+.top-margin{
+    margin-top: 10px;
+}
+
+td{
+    white-space: pre-line;
+}
+
+#loading{
+    height: 200px;
+    width: 1000px;
+    background-color: lightyellow;
+    color: black;
+}
+
+.hidden{
+    display: none;
+}
+

@@ -1,0 +1,16 @@
+{
+    "name": "ChatGPT Container",
+    "service": "chatgpt",
+    "workspaceFolder": "/chatgpt",
+    "dockerComposeFile": ["../docker-compose.yml"],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "donjayamanne.python-extension-pack",
+                "github.copilot",
+                "zignd.html-css-class-completion",
+                "htmlhint.vscode-htmlhint"
+                    ]
+        }
+    }
+}

@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" href="static/css/home.css">
+{% endblock %}
+{% block body %}
+<nav id="nav" class="navbar">
+    <div class="d-flex align-items-center">
+        <!--load adragos-pharma logo-->
+        <div>
+            <a href="#" class="navbar-brand ms-1">
+                <img src="static/image/AP stacked.jpg" width="64" height="31">
+            </a>
+        </div>
+        <div id="username">
+            <span class="nav-item">User: {{username}}</span>
+        </div>
+        <div id="timer">
+            <span class="nav-item">Time until Logout</span>
+            <span id="minutes" class="nav-item"></span>
+            <span class="nav-item">:</span>
+            <span id="seconds" class="nav-item"></span>
+        </div>
+    </div>
+</nav>
+<h4 class="mt-2"><a id="new-chat" name="new-chat" href="/new" class="link-opacity-75-hover">Create new chat</a></h4>
+<br>
+<form method="post">
+    <div id="select-parameter">
+        <h5>Select Model</h5>
+        <div class="row">
+            {% if selected_model %}
+            {% for model in selected_model %}
+            <div class="col-3  bg-light no-wrap">
+                <input type="radio" class="form-check-input" name="model" id="model1" value="{{model}}" checked>
+                <label class="form-check-label" for="model1">{{model}}</label>
+            </div>
+            {% endfor %}
+            {% else %}
+            {% for model in models %}
+            {% if model == default_model %}
+            <div class="col-3 bg-light no-wrap">
+                <input type="radio" class="form-check-input" name="model" id="model{{loop.index}}" value="{{model}}" checked>
+                <label class="form-check-label" for="model{{loop.index}}">{{model}}</label>
+            </div>
+            {% else %}
+            <div class="col-3 bg-light no-wrap">
+                <input type="radio" class="form-check-input" name="model" id="model{{loop.index}}" value="{{model}}">
+                <label class="form-check-label" for="model{{loop.index}}">{{model}}</label>
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <p class="text-stat mt-2">gpt-4 has data until 2023 and more accurate than gpt-3.5<br>
+                gpt-3.5 has data until 2021 and faster than gpt-4</p>
+            </div>
+        </div>
+        <h5>Select Purpose</h5>
+        <div class="row">
+            {% if selected_purpose %}
+            {% for k,v in selected_purpose %}
+            <div class="col-2 bg-light no-wrap">
+                <input type="radio" class="form-check-input" name="purpose" id="purpose1" value="{{v}}" checked>
+                <label class="form-check-label" for="purpose1">{{k}}</label>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="col-2 bg-light no-wrap">
+                <input type="radio" class="form-check-input" name="purpose" id="purpose1" value="question" checked>
+                <label class="form-check-label" for="purpose1">Ask Question</label>
+            </div>
+            <div class="col-2 bg-light no-wrap">
+                <input type="radio" class="form-check-input" name="purpose" id="purpose2" value="summarization">
+                <label class="form-check-label" for="purpose2">Summarize</label>
+            </div>
+            {% endif %}
+        <div class="row">
+            <div class="col-8">
+                <p class="text-stat mt-2">Normally, please use Ask Question. <br>
+                    Summarize would be used ,for example, when you want to summarize transcript of Teams meeting.</p>
+            </div>
+        </div>
+    </div>
+    <div id="loading" name="loading" class="hidden">
+        <h3>Now, Processing</h3>
+    </div>
+    <div id="chat-space">
+        <table>
+            <thead>
+                <th>
+                    <td class="chat-number">#</td>
+                    <td class="chat-content">Content</td>
+                </th>
+            </thead>
+            <tbody>
+                {% for chat in chat_history %}
+                <tr class="{{chat[0]}}">
+                    <td></td>
+                    <td class="chat-number">{{loop.index}}</td>
+                    <td class="chat-content">{{chat[1]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div id="input-space">
+        <div class="row  align-items-center fixed-bottom">
+            <div class="col-11">
+                <textarea class="form-control" name="chat-input" id="chat-input" rows="3" placeholder="Describe your question"></textarea>
+            </div>
+            <div class="col-1">
+                <button type="submit" class="btn btn-light border" id="submit-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                        <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                      </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}
+{% block script %}
+<script src="static/js/home.js" type='module'></script>
+{% endblock %}

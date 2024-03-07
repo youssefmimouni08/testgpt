@@ -1,0 +1,10 @@
+version: '3.9'
+services:
+  chatgpt:
+    build: 
+      context: ./app
+    container_name: chatgpt
+    ports:
+      - 80:80
+    volumes:
+      - ./app/app:/chatgpt

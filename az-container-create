@@ -1,0 +1,16 @@
+az login --use-device-code
+
+az container create \
+--name chatgpt \
+--resource-group adragos_rg \
+--cpu 1 \
+--memory 4 \
+--image adragosregistry.azurecr.io/chatgpt-adragos:v13 \
+--registry-login-server adragosregistry.azurecr.io \
+--registry-username adragosregistry \
+--registry-password rkGw8GJOVgwYPSeoxMMXjZuSrmlCGg3Ec0UuBa6LHe+ACRCKnmgK \
+--ip-address private \
+--vnet adragos-pharma-vnet \
+--subnet web-application-subnet \
+--subnet-address-prefix 10.0.0.0/24 \
+--ports 80
